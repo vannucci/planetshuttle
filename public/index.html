@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Planetary Shuttle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <!--[if lt IE 9]>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Planetary Shuttle</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <div class="dropdown navbar-right">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              New Passenger
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Mercury</a><br>
+              <a class="dropdown-item" href="#">Venus</a><br>
+              <a class="dropdown-item" href="#">Earth</a><br>
+              <a class="dropdown-item" href="#">Mars</a>
+            </div>
+          </div>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-2">
+          <h2>Mercury</h2>
+          <img src="./img/planet1.png" class="planet-portrait">
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-2">
+          <h2>Venus</h2>
+          <img src="./img/planet2.png" class="planet-portrait">
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-2">
+          <h2>Earth</h2>
+          <img src="./img/planet3.png" class="planet-portrait">
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-2">
+          <h2>Mars</h2>
+          <img src="./img/planet4.png" class="planet-portrait">
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-2">
+          <h2>Sun</h2>
+          <img src="./img/sun.jpg" class="planet-portrait">
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10" id="axis-div">
+          <img src="./img/axis.png" id="axis">
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+          </div>
+
+      </div>
+    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
