@@ -1,0 +1,22 @@
+{
+  "name": "planetaryshuttle",
+  "version": "1.0.0",
+  "description": "A simulated inter-planetary shuttle service",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vannucci/planetshuttle.git"
+  },
+  "author": "Michael Vannucci",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vannucci/planetshuttle/issues"
+  },
+  "homepage": "https://github.com/vannucci/planetshuttle#readme"
+}
