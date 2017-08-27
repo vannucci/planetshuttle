@@ -12,7 +12,7 @@ function Planet(name, position) {
 	//The arrays of passengers and shuttles may not be useful, since those two objects have come to track
 	//their own locations independently, FWIW
 
-	console.log("PLANET BIG. ALSO REPORTING.");
+	console.log("Sailor " + this.name + " reporting!");
 
 	
 }

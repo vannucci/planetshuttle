@@ -1,3 +1,12 @@
+Open To Dos:
+
+Make sure that on every tick, the shuttles are moved forward, the passengers check if they should get off the shuttle. Then check if the dispatcher logic is working correctly.
+
+On every tick, if the shuttle has a destination then it will move towards it. It can either be a destination to pick up a passenger, or to drop off a passenger. If it receives a new passenger in the queue and flies by that passenger, it must pick them up and continue on to drop off the first passenger.
+
+
+
+
 open questions:
 
 How does a shuttle know if a passenger at the planet they are at, but have not arrived at their final destination, is a passenger they should pick up?
@@ -20,3 +29,5 @@ When I load the 'tick' object, does it automatically run the 'setInterval()' fun
 Do I eliminate the array each planet has which tracks the passengers and shuttles present? What purpose does that serve?
 
 How do you pass a reference to a function for a callback WHILE INCLUDING the parameters you want to be used in that callback?
+
+How do I test the output of functions such as when the shuttle picks up a passenger?

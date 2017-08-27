@@ -12,18 +12,20 @@ function Dispatcher(solarsystem,shuttle1, shuttle2) {
 	//CurrentSolarSystem.Planets[1].shuttles.push(shuttle2);
 	//^^^^ Note at 8:50 on Sunday, this whole section might be deprecated since the shuttles know where they are
 
-	function sendShuttle(passenger) {
+	this.sendShuttle = function (passenger) {
 		//For now, it just sends whichever shuttle is not moving
-		if(shuttle1.currentLocation === passenger.origin) { 
-			shuttle1
-				.pickUpPassenger(passenger)
-				.sendTo(passenger.passengerDestination);
-		};
-		if(shuttle2.currentLocation === passenger.origin) { 
-			shuttle2
-				.pickUpPassenger(passenger)
-				.sendTo(passenger.destination);
-		};
+
+		return true;
+
+		var shuttle1score = Math.sign(shuttle1.velocity) * ( passenger.origin - shuttle1.currentLocation);
+		var shuttle2score = Math.sign(shuttle2.velocity) * ( passenger.origin - shuttle2.currentLocation);
+
+		if(shuttle1score <= shuttle2score) {
+			shuttle1.queueDestination(passenger.passengerDestination);
+		} else {
+			shuttle2.queueDestination(passenger.passengerDestination);
+		}
+
 	}  
 
 	console.log("Trash panda reporting. Dispatcher running");
