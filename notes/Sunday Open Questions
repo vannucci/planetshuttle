@@ -16,3 +16,7 @@ When I load the 'tick' object (SPOOOOON! #couldn'tbeavoided) and it loads the 's
 
 
 When I load the 'tick' object, does it automatically run the 'setInterval()' function when it is loaded? //I think yes
+
+Do I eliminate the array each planet has which tracks the passengers and shuttles present? What purpose does that serve?
+
+How do you pass a reference to a function for a callback WHILE INCLUDING the parameters you want to be used in that callback?

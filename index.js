@@ -9,7 +9,6 @@ app.set("view engine", "handlebars");
 app.use(express.static('public'));
 
 var tick = require("./controller/tick.js");
-tick.run();
 
 
 

@@ -8,8 +8,9 @@ function Dispatcher(solarsystem,shuttle1, shuttle2) {
 	var CurrentSolarSystem = solarsystem;
 
 	//assign shuttles a starting location
-	CurrentSolarSystem.Planets[0].shuttles.push(shuttle1);
-	CurrentSolarSystem.Planets[1].shuttles.push(shuttle2);
+	//CurrentSolarSystem.Planets[0].shuttles.push(shuttle1);
+	//CurrentSolarSystem.Planets[1].shuttles.push(shuttle2);
+	//^^^^ Note at 8:50 on Sunday, this whole section might be deprecated since the shuttles know where they are
 
 	function sendShuttle(passenger) {
 		//For now, it just sends whichever shuttle is not moving

@@ -14,15 +14,15 @@ function Shuttle(name, currentLocation) {
 
 	function sendTo(destination) { //A destination comes in the form of a number representing the planet location
 		var heading = destination - this.currentLocation; //This is a vector, of sorts, telling the shuttle which way to go and how far
-		if(Math.sign(heading) != 0 || Math.sign(heading) = -0) {
+		if(Math.sign(heading) != 0 || Math.sign(heading) != -0) {
 			this.direction = Math.sign(heading);
 		}; //It can be the case that heading equals -0, #javascriptpower
 		this.distanceToTravel = Math.abs(heading); //Check this for zero, because then you're there
 		return this; //For event chaining
 	}
 
-	function moveUntilArrived() {
-		if(distanceToTravel != 0) {
+	this.moveUntilArrived = function () {
+		if(this.distanceToTravel != 0) {
 			currentLocation += direction;
 		}
 		return this; //For event chaining

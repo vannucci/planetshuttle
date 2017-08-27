@@ -19,5 +19,9 @@ describe('Solar system', function() {
 	it('should have four planets', function() {
 		assert.isObject(SolarSystem1.Planets, "Planets inside Solar System is not empty")
 	});
+
+	it('should have a function next', function() {
+		assert.property(SolarSystem1, 'next', "Solar system contains the property next");
+	})
 	
 });

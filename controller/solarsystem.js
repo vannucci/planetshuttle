@@ -25,7 +25,8 @@ function SolarSystem() {
 
 	var dispatcher = new Dispatcher(this,shuttle1,shuttle2); //Instantiate a new dispatcher, pass in the solar system and the two shuttles
 
-	function next() {
+	this.next = function() {
+		console.log("NEXT!");
 		shuttle1.moveUntilArrived();
 		shuttle2.moveUntilArrived();
 
