@@ -11,12 +11,16 @@ function Passenger(name, origin) {
 	this.passengerDirection = '';
 	this.passengerDestination = '';
 
-	this.shuttleRequest = function (direction,destination) {
+	function request(direction,destination) {
 		passengerDirection = direction;
 		passengerDestination = destination;
 		//call the dispatcher here
-		//dispatcher(passengerDirection,passengerDestination);
+
+		dispatcher.sendShuttle(this); //Sends the entire passenger object into the sendShuttle request
+
 	};
+
+	console.log("Passenger reporting");
 	
 }
 

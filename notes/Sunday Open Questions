@@ -1,0 +1,18 @@
+open questions:
+
+How does a shuttle know if a passenger at the planet they are at, but have not arrived at their final destination, is a passenger they should pick up?
+
+What should each shuttle do on a tick?
+
+Am I overusing the 'this' keyword when I am writing the object constructor? How do I know when to use it, and when it is superfluous?
+
+What tests should I be writing for each object?
+
+If I create a new solar system object, and rely on THAT object to instantiate all the others, don't those other objects (like the 
+shuttles, or dispatcher) only exist in the scope of the solar system? Doesn't that mean, then, that I must call them by calling the
+solar system object first, and then each of them? This is probably not useful with the passenger.
+
+When I load the 'tick' object (SPOOOOON! #couldn'tbeavoided) and it loads the 'solar system' object in its first line, and the solar system loads the rest of my modules in its first line, does that mean that, in my index.js, I can load all my controller modules just by loading the 'tick' object and having the cascade do the rest of the work?
+
+
+When I load the 'tick' object, does it automatically run the 'setInterval()' function when it is loaded? //I think yes
