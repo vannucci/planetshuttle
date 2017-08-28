@@ -1,4 +1,21 @@
 Monday Open Questions
 
-When a passenger in instantiated, who keeps track of them? The planet probably should have an array of passengers so that the shuttle can query the local array of passengers to see who is set to get on this shuttle.
+What are the various logical flows, and how do I set up environments to test each of them?
 
+1. A passenger is created at a particular planet of origin, and then their destination is set and the dispatcher queued for a shuttle
+2. No passengers are created, and the shuttles settle down to wherever they are and sit still, waiting for a pickup
+3. A shuttle receives an assignment and heads there, checking each location to see if there are more passengers to pick up along the way
+4. A shuttle arrives at a location, either final or intermediate, and checks if a passenger must be dropped off. If so, they drop them off and remove the destination from their queue
+5. Once all passengers are dropped off the shuttle remains in place where it was last
+
+In addition:
+
+1. The system is queued every tick to see where each shuttle is, and which planets have passengers
+2. Shuttles have their own box where their location, speed and direction they are pointed in
+3. The passengers are displayed in the proper spot where THEY are at
+
+
+
+Okay, open questions
+
+1. I am making tests for seeing if the shuttles work and move around properly. How should I be displaying this information so that I can see what they are doing? Why is shuttle1's whereGoing value go to undefined? How do I test what is going on there?

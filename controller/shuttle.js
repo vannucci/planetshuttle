@@ -3,26 +3,47 @@
 module.exports = Shuttle;
 
 
-function Shuttle(name, currentLocation,id) {
+function Shuttle(name, currentLocation,id,ssRef) {
 	this.name = name;
 	this.currentLocation = currentLocation; //A number from 0 to 3 indicating the planet it is at
 	this.velocity = 0; 
 	this.direction = 0; //-1 is Sunward, since the sun is 0, Anti-sunward is 1, 0 is no direction
 	this.passengers = [];
-	this.destination = [];
+	this.destination = currentLocation; //You begin going where you are #getwoke
 	this.pickUpLocation = [];
 	this.distanceToTravel = 0;
 	this.id = id;
+	this.arrived = false;
+	this.system= ssRef
+
+	this.statusUpdate = function() {
+		var status = {
+			id: this.id,
+			whereGoing: this.destination,
+			location: this.currentLocation,
+			velocity: this.velocity,
+			direction: this.direction,
+			arrived: this.arrived
+		}
+		console.log(status);
+		return status;
+	}
 
 	this.pilot = function() { //This is the entry point to the Shuttle object, this function is called every tick
-		if(this.moveUntilArrived()) { //If you have arrived at your destination...
-			this.destination.shift();  //Remove that destination from the queue.
-			if(this.destination > 0) { //If there are still destinations in the queue...
-				this.sendTo(destination[0]) //Assign the next one and keep going
+		if(this.velocity===0 && this.pickUpLocation.length > 0) {
+			this.sendTo(this.pickUpLocation[0]) //Assign the next one and keep going
+			this.pickUpLocation.splice(0,1);
+		}
+		this.moveUntilArrived()
+		if(this.arrived && this.pickUpLocation.length > 0) { //If you have arrived at your destination...
+			if(this.pickUpLocation > 0) { //If there are still destinations in the queue...
+				this.sendTo(this.pickUpLocation[0]) //Assign the next one and keep going
+				this.pickUpLocation.splice(0,1);
 			}
 		}
 		this.checkForPickups();
 		this.checkForDropOffs();
+		return true;
 
 	}
 
@@ -32,7 +53,7 @@ function Shuttle(name, currentLocation,id) {
 	}
 
 	this.sendTo = function (destination) { //A destination comes in the form of a number representing the planet location
-		this.destination = destination[0]
+		this.destination = destination;
 		var heading = this.destination - this.currentLocation; //This is a vector, of sorts, telling the shuttle which way to go and how far
 		if(Math.sign(heading) !== 0 || Math.sign(heading) !== -0) {
 			this.direction = Math.sign(heading);
@@ -43,14 +64,28 @@ function Shuttle(name, currentLocation,id) {
 	}
 
 	this.moveUntilArrived = function () { //This function moves the shuttle along assuming it hasn't arrived at the current destination
+		
 		if(this.currentLocation !== this.destination) {
+
+			if(this.currentLocation <= 0) {
+				this.direction = 1;
+				this.velocity = 1;
+			} else if (this.currentLocation >= 3) {
+				this.direction = -1;
+				this.velocity = -1;
+			}
+
 			this.currentLocation += this.direction;
-			return false;
+			this.arrived = false;
+			return this;
 		} else {
+			this.destination = this.currentLocation;
 			this.velocity = 0; //Now you have stopped
-			this.destination = this.currentLocation; //Where you want to go is where you are #lifegoals
-			return true;
+			this.direction = 0;
+			this.arrived = true;
+			return this;
 		}
+
 	}
 
 	this.pickUpPassenger  = function (passenger) {
@@ -76,11 +111,11 @@ function Shuttle(name, currentLocation,id) {
 	this.checkForPickups = function() { //Look through the list of pickups and see if where we are matches it
 		for(var i = 0; i < this.pickUpLocation.length; i++) { //Loop through every pickup location
 			if(this.currentLocation === this.pickUpLocation[i]) { //See if we are at any of them, if we are...
-				for(var j = 0; j < system.Planets[this.currentLocation].passengers.length; j++) { //Look through the local list of passengers
-					if(system.Planets[this.currentLocation].passengers[j].ticket = this.id) { //This is the right shuttle
-						this.pickUpPassenger(system.Planets[this.currentLocation].boardPassenger(j));
+				for(var j = 0; j < this.system.Planets[this.currentLocation].passengers.length; j++) { //Look through the local list of passengers
+					if(this.system.Planets[this.currentLocation].passengers[j].ticket = this.id) { //This is the right shuttle
+						this.pickUpPassenger(this.system.Planets[this.currentLocation].boardPassenger(j));
 						this.pickUpLocation[i].splice(i,1); //Remove this pick up location from the pickup queue
-						this.destination.push(system.Planets[this.currentLocation].passengers[j].passengerDestination); //Push the new destination onto the list
+						this.destination.push(this.system.Planets[this.currentLocation].passengers[j].passengerDestination); //Push the new destination onto the list
 					}
 				}				
 			}

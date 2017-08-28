@@ -22,18 +22,16 @@ function SolarSystem() {
 
 	] //Solar system contains four planets
 
-	this.activePassengers = [];
-
-	this.shuttle1 = new Shuttle("Johnson",0,1); //Two new shuttles are created when the solar system is initialized
-	this.shuttle2 = new Shuttle("Vaughn",2,2); //Hopefully these ladies will help me
+	this.shuttle1 = new Shuttle("Johnson",0,1,system); //Two new shuttles are created when the solar system is initialized
+	this.shuttle2 = new Shuttle("Vaughn",2,2,system); //Hopefully these ladies will help me
 
 	this.dispatcher = new Dispatcher(this,this.shuttle1,this.shuttle2); //Instantiate a new dispatcher, pass in the solar system and the two shuttles
 
 
-	this.createNewPassenger = function(name,origin) { //When a passenger is created, they are instantiated and then added to the planet's passengers array
-		var newPassenger = new Passenger(name, origin); //The passenger object is created
+	this.createNewPassenger = function(name,origin,solarSystemRef) { //When a passenger is created, they are instantiated and then added to the planet's passengers array
+		var newPassenger = new Passenger(name, origin,system); //The passenger object is created
 		this.Planets[origin].queuePassenger(newPassenger);
-		return this;
+		return newPassenger;
 	}
 
 	this.next = function() {

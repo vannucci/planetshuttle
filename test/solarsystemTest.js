@@ -5,9 +5,11 @@ var assert = chai.assert;
 var SolarSystem = require('../controller/solarsystem.js');
 var Passenger = require('../controller/passenger.js');
 
+
 describe('Solar system', function() {
 	var SolarSystem1 = new SolarSystem();
 	var Passenger1Seat = SolarSystem1.createNewPassenger("Jon Gazi",2); //Loads the passenger into the solar system
+
 
 
 	it('should create a Solar system', function() {
@@ -35,16 +37,48 @@ describe('Solar system', function() {
 		assert.nestedProperty(SolarSystem1,'shuttle1.moveUntilArrived',"Shuttle in solar system has moveUntilArrived");
 	});
 
-	it('should assign a passenger a seat', function() {
-		assert.isObject(SolarSystem1.activePassengers[Passenger1Seat],"Passenger is created, in solar system scope, and loaded into seat and can be recalled");
+	it('should create a passenger and place them into a planet queue', function() {
+		assert.isObject(SolarSystem1.createNewPassenger("Darryl", 2),"Passenger is created, in solar system scope, and placed in queue of origin planet");
 	});
 
 	it('should be able to set the destination for the dispatcher', function() {
-		assert.isOk(SolarSystem1.activePassengers[Passenger1Seat].request(3), "Jon Gazi asks to go to Mars");
+		assert.isOk(SolarSystem1.Planets[2].passengers[0].request(-1,1), "Darryl asks to go to Venus");
 	});
 
 	it('should then pass the passenger object to the dispatcher with a destination dispatcher can read', function() {
-		assert.isOk(SolarSystem1.dispatcher.sendShuttle(SolarSystem1.activePassengers[Passenger1Seat]), "Solar system asks the dispatcher for a ride");
+		assert.isOk(SolarSystem1.dispatcher.sendShuttle(SolarSystem1.Planets[2].passengers[0]), "Solar system asks the dispatcher for a ride");
 	});
+
+	it('should return an object containing the current status of the shuttle', function() {
+		assert.isObject(SolarSystem1.shuttle1.statusUpdate(), "We query the shuttle for its status");
+	});
+
+	it('should set a destination, move it until it arrives, send status updates on every tick, and tick twice more than needed', function() {
+		SolarSystem1.shuttle1.sendTo(3);
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle1.pilot();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle1.pilot();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle1.pilot();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle1.pilot();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle1.pilot();
+	});
+	it('create passenger at 0, passenger requests to go to 3, tick enough times to get there', function() {
+		SolarSystem1.createNewPassenger("Shannon",0,SolarSystem1).request(1,3);
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle1.pilot();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle1.pilot();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle1.pilot();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle1.pilot();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle1.pilot();
+	});
+
 
 });

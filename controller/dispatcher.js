@@ -14,18 +14,24 @@ function Dispatcher(solarsystem,shuttle1, shuttle2) {
 
 	this.sendShuttle = function (passenger) {
 		//For now, it just sends whichever shuttle is not moving
-
-		return true;
+		console.log("Dispatcher here! Request for shuttle from " + passenger.name + " has been made from " + passenger.origin + " to " + passenger.passengerDestination);
 
 		var shuttle1score = Math.sign(shuttle1.velocity) * ( passenger.origin - shuttle1.currentLocation);
+		console.log("Shuttle score 1 " + shuttle1score);
 		var shuttle2score = Math.sign(shuttle2.velocity) * ( passenger.origin - shuttle2.currentLocation);
+		console.log("Shuttle score 2 " + shuttle2score)
 
-		if(shuttle1score <= shuttle2score) {
+
+		if(shuttle1score <= shuttle2score && !isNaN(shuttle1score)) {
 			shuttle1.queuePickupLocation(passenger.passengerDestination);
+			console.log("Shuttle 1 assigned with destination " + passenger.passengerDestination);
 			return 1; //return the ticket number
-		} else {
+		} else if(!isNaN(shuttle2score)) {
 			shuttle2.queuePickupLocation(passenger.passengerDestination);
+			console.log("Shuttle 2 assigned with destination " + passenger.passengerDestination);
 			return 2; //return the ticket number
+		} else {
+			return 0;
 		}
 
 	}  
