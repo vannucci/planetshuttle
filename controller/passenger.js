@@ -12,12 +12,13 @@ function Passenger(name, origin, ssRef) {
 	this.passengerDestination = '';
 	this.currentLocation = origin;
 	this.boardedShuttle = null; //This is the shuttle the passenger is on
+	this.ticket = null;
 
 	this.request = function (direction,destination) {
 		passengerDirection = direction;
 		passengerDestination = destination;
-		//call the dispatcher here
-		return this;
+		//call the dispatcher here, dispatcher will set ticket 1 or 2 depending on shuttle
+		this.ticket = system.dispatcher.sendShuttle(this);
 
 	};
 

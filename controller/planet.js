@@ -12,6 +12,17 @@ function Planet(name, position) {
 	//The arrays of passengers and shuttles may not be useful, since those two objects have come to track
 	//their own locations independently, FWIW
 
+	this.boardPassenger = function(entry) {
+		var platform = this.passengers[entry];
+		passengers.splice(entry,1);
+		return platform
+	}
+
+	this.queuePassenger = function(passenger) {
+		this.passengers.push(passenger);
+		return this;
+	}
+
 	console.log("Sailor " + this.name + " reporting!");
 
 	

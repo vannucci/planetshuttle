@@ -10,7 +10,9 @@ var Passenger = require("./passenger.js");
 
 function SolarSystem() {
 
-	this.Planets = [
+	var system = this; //The solar system is the parent environment for planets, dispatcher, and shuttles. Passengers are created and passed off to planets
+
+	this.Planets = [ //Instantiating new planets in their spot on the planetary array
 
 		new Planet("Mercury",0), //Each entry is a new planet object
 		new Planet("Venus", 1),
@@ -22,40 +24,22 @@ function SolarSystem() {
 
 	this.activePassengers = [];
 
-
-	this.recallPassengerInfo = function(passengerSeat) {
-		return activePassengers[passengerSeat];
-	}
-
-	this.addPassenger = function(passenger) {
-		this.activePassengers.push(passenger);
-		return this.activePassengers.length - 1; //the position of this new passenger in the array
-	};
-
-	this.removePassenger = function(passengerSeat) {
-		if(activePassengers[passengerSeat]) {
-			activePassengers.splice(passengerSeat,1);
-			return true;
-		}
-		return false;
-	};
-
-	this.createNewPassenger = function(name,origin) {
-		var newPassenger = new Passenger(name, origin);
-		var newPassengerSeat = this.addPassenger(newPassenger);
-		return newPassengerSeat;
-	}
-
-
-	this.shuttle1 = new Shuttle("Johnson",0); //Two new shuttles are created when the solar system is initialized
-	this.shuttle2 = new Shuttle("Vaughn",2); //Hopefully these ladies will help me
+	this.shuttle1 = new Shuttle("Johnson",0,1); //Two new shuttles are created when the solar system is initialized
+	this.shuttle2 = new Shuttle("Vaughn",2,2); //Hopefully these ladies will help me
 
 	this.dispatcher = new Dispatcher(this,this.shuttle1,this.shuttle2); //Instantiate a new dispatcher, pass in the solar system and the two shuttles
 
+
+	this.createNewPassenger = function(name,origin) { //When a passenger is created, they are instantiated and then added to the planet's passengers array
+		var newPassenger = new Passenger(name, origin); //The passenger object is created
+		this.Planets[origin].queuePassenger(newPassenger);
+		return this;
+	}
+
 	this.next = function() {
 		console.log("NEXT!");
-		shuttle1.moveUntilArrived();
-		shuttle2.moveUntilArrived();
+		this.shuttle1.moveUntilArrived();
+		this.shuttle2.moveUntilArrived();
 
 	}
 

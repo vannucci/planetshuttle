@@ -21,9 +21,11 @@ function Dispatcher(solarsystem,shuttle1, shuttle2) {
 		var shuttle2score = Math.sign(shuttle2.velocity) * ( passenger.origin - shuttle2.currentLocation);
 
 		if(shuttle1score <= shuttle2score) {
-			shuttle1.queueDestination(passenger.passengerDestination);
+			shuttle1.queuePickupLocation(passenger.passengerDestination);
+			return 1; //return the ticket number
 		} else {
-			shuttle2.queueDestination(passenger.passengerDestination);
+			shuttle2.queuePickupLocation(passenger.passengerDestination);
+			return 2; //return the ticket number
 		}
 
 	}  

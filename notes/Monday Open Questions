@@ -1,0 +1,4 @@
+Monday Open Questions
+
+When a passenger in instantiated, who keeps track of them? The planet probably should have an array of passengers so that the shuttle can query the local array of passengers to see who is set to get on this shuttle.
+
