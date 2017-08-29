@@ -8,6 +8,7 @@ var Passenger = require('../controller/passenger.js');
 describe('Shuttle', function() {
 	var Shuttle1 = new Shuttle('Columbus',2);
 	var Passenger1 = new Passenger('Caboose','Earth');
+	var SolarSystem1 = new SolarSystem();
 
 	it('should create a shuttle', function() {
 
@@ -16,6 +17,12 @@ describe('Shuttle', function() {
 		//assert.equal(Emily.passengerDestination = '');
 	});
 	
+	it("Should check for a passenger at location 3, and pick up that passenger", function() {
+		console.log("Length of passengers " + Shuttle1.passengers.length);
+		console.log(Shuttle1.checkForPickups());
+	});
+
+
 	it("Should have the correct name", function() {
 		assert.strictEqual(Shuttle1.name, 'Columbus', "The name parameter is correctly initialized");
 	});
@@ -27,13 +34,13 @@ describe('Shuttle', function() {
 	it("Should contain no passengers when it is started", function() {
 		assert.equal(Shuttle1.passengers.length,0, "The passengers array is empty when it starts");
 	});
-
+/*
 	it("Should pick up a passenger when the pickUpPassenger function is called", function() {
 		Shuttle1.pickUpPassenger(Passenger1);
 
 		assert.equal(Shuttle1.passengers.length,1, "The passenger has boarded");
 	});
-
+*/
 	it("Should start at a location of 2", function() {
 		assert.equal(Shuttle1.currentLocation,2, "The shuttle begins at position 2");
 	});
@@ -53,5 +60,11 @@ describe('Shuttle', function() {
 		console.log(Shuttle1.currentLocation);
 		assert.equal(Shuttle1.currentLocation,3, "The shuttle has arrived at position 3");
 	});
+
+	it("Should check for a passenger at location 3, and pick up that passenger", function() {
+		console.log("Length of passengers " + Shuttle1.passengers.length);
+		console.log(Shuttle1.checkForPickups());
+	});
+
 
 });

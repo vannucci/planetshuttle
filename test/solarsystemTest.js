@@ -66,6 +66,7 @@ describe('Solar system', function() {
 		SolarSystem1.shuttle1.statusUpdate();
 		SolarSystem1.shuttle1.pilot();
 	});
+
 	it('create passenger at 0, passenger requests to go to 3, tick enough times to get there', function() {
 		SolarSystem1.createNewPassenger("Shannon",0,SolarSystem1).request(1,3);
 		SolarSystem1.shuttle1.statusUpdate();
@@ -79,6 +80,36 @@ describe('Solar system', function() {
 		SolarSystem1.shuttle1.statusUpdate();
 		SolarSystem1.shuttle1.pilot();
 	});
+
+	it('create a passenger at 2, passenger requests to go to 0, click on next to tick the environment and both shuttles, pick up and drop off the passenger', function() {
+		SolarSystem1.createNewPassenger("Doobles",2,SolarSystem1).request(-1,0);
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle2.statusUpdate();
+		SolarSystem1.next();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle2.statusUpdate();
+		SolarSystem1.next();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle2.statusUpdate();
+		SolarSystem1.next();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle2.statusUpdate();
+		SolarSystem1.next();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle2.statusUpdate();
+		SolarSystem1.next();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle2.statusUpdate();
+		SolarSystem1.next();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle2.statusUpdate();
+		SolarSystem1.next();
+		SolarSystem1.shuttle1.statusUpdate();
+		SolarSystem1.shuttle2.statusUpdate();
+		SolarSystem1.next();
+
+
+	})
 
 
 });

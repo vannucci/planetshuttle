@@ -10,8 +10,6 @@ var Passenger = require("./passenger.js");
 
 function SolarSystem() {
 
-	var system = this; //The solar system is the parent environment for planets, dispatcher, and shuttles. Passengers are created and passed off to planets
-
 	this.Planets = [ //Instantiating new planets in their spot on the planetary array
 
 		new Planet("Mercury",0), //Each entry is a new planet object
@@ -22,22 +20,22 @@ function SolarSystem() {
 
 	] //Solar system contains four planets
 
-	this.shuttle1 = new Shuttle("Johnson",0,1,system); //Two new shuttles are created when the solar system is initialized
-	this.shuttle2 = new Shuttle("Vaughn",2,2,system); //Hopefully these ladies will help me
+	this.shuttle1 = new Shuttle("Johnson",0,1,this); //Two new shuttles are created when the solar system is initialized
+	this.shuttle2 = new Shuttle("Vaughn",2,2,this); //Hopefully these ladies will help me
 
 	this.dispatcher = new Dispatcher(this,this.shuttle1,this.shuttle2); //Instantiate a new dispatcher, pass in the solar system and the two shuttles
 
 
-	this.createNewPassenger = function(name,origin,solarSystemRef) { //When a passenger is created, they are instantiated and then added to the planet's passengers array
-		var newPassenger = new Passenger(name, origin,system); //The passenger object is created
+	this.createNewPassenger = function(name,origin) { //When a passenger is created, they are instantiated and then added to the planet's passengers array
+		var newPassenger = new Passenger(name, origin, this); //The passenger object is created
 		this.Planets[origin].queuePassenger(newPassenger);
 		return newPassenger;
 	}
 
 	this.next = function() {
 		console.log("NEXT!");
-		this.shuttle1.moveUntilArrived();
-		this.shuttle2.moveUntilArrived();
+		this.shuttle1.pilot();
+		this.shuttle2.pilot();
 
 	}
 

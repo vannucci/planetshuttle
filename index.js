@@ -8,15 +8,17 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 app.use(express.static('public'));
 
-var tick = require("./controller/tick.js");
-
-
+require("./controller/tick.js");
 
 var port = 3000;
 
 
 app.get('/', function(req,res,next) {
 	res.send("hello");
+});
+
+app.get('/shuttledata', function(req,res,next) {
+	res.send(universe().shuttle1.statusUpdate());
 });
 
 app.listen(port, function() {

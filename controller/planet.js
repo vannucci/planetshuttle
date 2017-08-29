@@ -14,7 +14,7 @@ function Planet(name, position) {
 
 	this.boardPassenger = function(entry) {
 		var platform = this.passengers[entry];
-		passengers.splice(entry,1);
+		this.passengers.splice(entry,1);
 		return platform
 	}
 

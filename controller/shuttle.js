@@ -19,11 +19,13 @@ function Shuttle(name, currentLocation,id,ssRef) {
 	this.statusUpdate = function() {
 		var status = {
 			id: this.id,
+			pickUplocations: this.pickUpLocation,
 			whereGoing: this.destination,
 			location: this.currentLocation,
 			velocity: this.velocity,
 			direction: this.direction,
-			arrived: this.arrived
+			arrived: this.arrived,
+			passengers: this.passengers.length
 		}
 		console.log(status);
 		return status;
@@ -36,9 +38,11 @@ function Shuttle(name, currentLocation,id,ssRef) {
 		}
 		this.moveUntilArrived()
 		if(this.arrived && this.pickUpLocation.length > 0) { //If you have arrived at your destination...
-			if(this.pickUpLocation > 0) { //If there are still destinations in the queue...
+			if(this.pickUpLocation.length > 0) { //If there are still destinations in the queue...
 				this.sendTo(this.pickUpLocation[0]) //Assign the next one and keep going
 				this.pickUpLocation.splice(0,1);
+			} else {
+				this.sendTo(this.currentLocation);
 			}
 		}
 		this.checkForPickups();
@@ -94,7 +98,7 @@ function Shuttle(name, currentLocation,id,ssRef) {
 	}
 
 	this.dropOffPassenger = function (seat) {
-		var platform = passengers[seat]; //Place the dropping off passenger on the platform
+		var platform = this.passengers[seat]; //Place the dropping off passenger on the platform
 		this.passengers.splice(seat,1);
 
 		for(var j = 0; j < this.destination.length; j++) { //Go through every destination
@@ -116,10 +120,12 @@ function Shuttle(name, currentLocation,id,ssRef) {
 						this.pickUpPassenger(this.system.Planets[this.currentLocation].boardPassenger(j));
 						this.pickUpLocation[i].splice(i,1); //Remove this pick up location from the pickup queue
 						this.destination.push(this.system.Planets[this.currentLocation].passengers[j].passengerDestination); //Push the new destination onto the list
+						return true; //picked up passenger
 					}
 				}				
 			}
 		}
+		return false; //did not pick up passenger
 
 	}
 
