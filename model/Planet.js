@@ -23,7 +23,7 @@ function Planet(name, position) {
 	//Adds a passenger to the planetary queue when passed
 	this.queuePassenger = function(passenger) {
 		this.passengers.push(passenger);
-		return this;
+		console.log("Passenger " + passenger.name + "is on the queue");
 	};
 
 	//Returns all passengers on a given planet

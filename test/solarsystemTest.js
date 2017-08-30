@@ -106,11 +106,9 @@ describe('Solar system', function() {
 
 
 	});
-	it('should return an object full of passengers',function() {
-		SolarSystem1.createNewPassenger("Cody", 2)
-		console.log(SolarSystem1.planets[0].passengers);
-		console.log(SolarSystem1.getAllPassengers());
+
+	it('should get the status of a shuttle', function() {
+		console.log(SolarSystem1.shuttles[0].statusUpdate());
 	});
-
-
+	
 });

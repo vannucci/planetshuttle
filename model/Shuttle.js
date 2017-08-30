@@ -4,13 +4,13 @@
 "use strict";
 
 
-function Shuttle(name, currentLocation, id, solarSystemReference) {
+function Shuttle(name, startingLocation, id, solarSystemReference) {
 	this.name = name;
-	this.currentLocation = currentLocation; //A number from 0 to 3 indicating the planet it is at
+	this.currentLocation = startingLocation; //A number from 0 to 3 indicating the planet it is at
 	this.velocity = 0; 
 	this.direction = 0; //-1 is Sunward, since the sun is 0, Anti-sunward is 1, 0 is no direction
 	this.passengers = [];
-	this.destination = currentLocation; //You begin going where you are #getwoke
+	this.destination = startingLocation; //You begin going where you are #getwoke
 	this.pickUpLocation = [];
 	this.distanceToTravel = 0;
 	this.id = id;
@@ -20,9 +20,9 @@ function Shuttle(name, currentLocation, id, solarSystemReference) {
 	this.statusUpdate = function() {
 		var status = {
 			id: this.id,
-			pickUplocations: this.pickUpLocation,
-			whereGoing: this.destination,
 			location: this.currentLocation,
+			pickUplocations: (this.pickUpLocation.length > 0 ? this.pickUpLocation[0] : "None"),
+			destination: this.destination,
 			velocity: this.velocity,
 			direction: this.direction,
 			arrived: this.arrived,

@@ -30,12 +30,7 @@ app.post('/newPassenger', function(req,res) {
 	var dir = req.body.dir;
 	activeSolarSystem.createNewPassenger(name,origin,dir);
 	console.log("Body " + name + "," + origin + "," + dir + ".");
-});
-
-
-app.get('/testPassenger', function(req,res) {
-	activeSolarSystem.createNewPassenger("GlaDOS",1);
-	res.redirect('/');
+	res.redirect('back');
 });
 
 app.get('/tick', function(req,res) {
@@ -54,29 +49,26 @@ app.get('/', function(req,res) {
 	var shuttle1Status = activeSolarSystem.shuttles[0].statusUpdate();
 	var shuttle2Status = activeSolarSystem.shuttles[1].statusUpdate();
 
-	console.log("All passengers " + activeSolarSystem.allPassengers);
-
-
 	var allData = {
 		shuttle1: {
 			id1: shuttle1Status.id,
-			pickUplocations1: shuttle1Status.pickUpLocation,
-			whereGoing1: shuttle1Status.destination,
-			location1: shuttle1Status.currentLocation,
+			pickUpLocation1: shuttle1Status.pickUplocations,
+			destination1: shuttle1Status.destination,
+			location1: shuttle1Status.location,
 			velocity1: shuttle1Status.velocity,
 			direction1: shuttle1Status.direction,
 			arrived1: shuttle1Status.arrived,
-			passengers1: shuttle1Status.passengers.length		
+			passengers1: shuttle1Status.passengers		
 		},
 		shuttle2: {
 			id2: shuttle2Status.id,
-			pickUplocations2: shuttle2Status.pickUpLocation,
-			whereGoing2: shuttle2Status.destination,
-			location2: shuttle2Status.currentLocation,
+			pickUpLocation2: shuttle2Status.pickUplocations,
+			destination2: shuttle2Status.destination,
+			location2: shuttle2Status.location,
 			velocity2: shuttle2Status.velocity,
 			direction2: shuttle2Status.direction,
 			arrived2: shuttle2Status.arrived,
-			passengers2: shuttle2Status.passengers.length		
+			passengers2: shuttle2Status.passengers		
 		},
 		passenger: activeSolarSystem.allPassengers
 	};

@@ -33,14 +33,14 @@ function SolarSystem() {
 
 	this.createNewPassenger = function(name,origin,direction) { //When a passenger is created, they are instantiated and then added to the planet's passengers array
 		var newPassenger = new Passenger(name, origin, direction, this); //The passenger object is created
-		this.allPassengers.push({"name":name,"origin":origin, "direction":direction});
+		this.allPassengers.push({"name":name,"origin":origin,"direction":direction});
 		this.planets[origin].queuePassenger(newPassenger);
 		newPassenger.request();
 		return newPassenger;
 	};
 
 	this.next = function() {
-		console.log("NEXT!");
+		console.log("Tick");
 		this.shuttles[0].pilot();
 		this.shuttles[1].pilot();
 

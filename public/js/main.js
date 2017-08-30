@@ -31,16 +31,6 @@
 		location.reload();
 	});
 
-	$('#testPassenger').on('click', function(event) {
-		$.ajax({
-			type: 'GET',
-			url: '/testPassenger',
-			success: function(data) {
-				if(!data.error) location.reload(true);
-			}
-		});
-	});
-
 	$('#tickOnce').on('click', function(event) {
 		$.ajax({
 			type: 'GET',
