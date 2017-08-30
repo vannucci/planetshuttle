@@ -3,7 +3,7 @@
 module.exports = Shuttle;
 
 
-function Shuttle(name, currentLocation,id,ssRef) {
+function Shuttle(name, currentLocation, id, solarSystemReference) {
 	this.name = name;
 	this.currentLocation = currentLocation; //A number from 0 to 3 indicating the planet it is at
 	this.velocity = 0; 
@@ -14,7 +14,7 @@ function Shuttle(name, currentLocation,id,ssRef) {
 	this.distanceToTravel = 0;
 	this.id = id;
 	this.arrived = false;
-	this.system= ssRef
+	this.system = solarSystemReference;
 
 	this.statusUpdate = function() {
 		var status = {
@@ -100,15 +100,15 @@ function Shuttle(name, currentLocation,id,ssRef) {
 	this.dropOffPassenger = function (seat) {
 		var platform = this.passengers[seat]; //Place the dropping off passenger on the platform
 		this.passengers.splice(seat,1);
-
-		for(var j = 0; j < this.destination.length; j++) { //Go through every destination
-			if(this.destination[j] === this.currentLocation) { //Find an instance of this passengers destination
+/*
+		for(var j = 0; j < this.pickUplocation.length; j++) { //Go through every pickup location
+			if(this.pickUpLocation[j] === this.currentLocation) { //Find an instance of this passengers destination
 				this.destination.splice(j,1);
 				break; //Remove only one instance of this destination
 
 			}
 		}
-
+*/
 		return this; //A passenger is not placed in the planet's array, they are simply dropped off and disappear.
 	}
 
@@ -118,8 +118,8 @@ function Shuttle(name, currentLocation,id,ssRef) {
 				for(var j = 0; j < this.system.Planets[this.currentLocation].passengers.length; j++) { //Look through the local list of passengers
 					if(this.system.Planets[this.currentLocation].passengers[j].ticket = this.id) { //This is the right shuttle
 						this.pickUpPassenger(this.system.Planets[this.currentLocation].boardPassenger(j));
-						this.pickUpLocation[i].splice(i,1); //Remove this pick up location from the pickup queue
-						this.destination.push(this.system.Planets[this.currentLocation].passengers[j].passengerDestination); //Push the new destination onto the list
+						this.pickUpLocation.splice(i,1); //Remove this pick up location from the pickup queue
+						this.destination = this.system.Planets[this.currentLocation].returnPassenger(j); //Push the new destination onto the list
 						return true; //picked up passenger
 					}
 				}				

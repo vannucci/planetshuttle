@@ -23,6 +23,22 @@ function Planet(name, position) {
 		return this;
 	}
 
+	this.getPassengers = function(i) {
+		if(this.passengers.length > 0) {
+			return this.passengers;
+		} else {
+			return null;
+		}
+	}
+
+	this.returnPassenger = function(j) {
+		if(this.passengers[j]) {
+			return this.passengers[j];
+		} else {
+			return null;
+		}
+	}
+
 	console.log("Sailor " + this.name + " reporting!");
 
 	

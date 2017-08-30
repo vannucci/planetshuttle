@@ -4,6 +4,7 @@ var assert = chai.assert;
 
 var Shuttle = require('../controller/shuttle.js');
 var Passenger = require('../controller/passenger.js');
+var SolarSystem = require('../controller/solarsystem.js');
 
 describe('Shuttle', function() {
 	var Shuttle1 = new Shuttle('Columbus',2);

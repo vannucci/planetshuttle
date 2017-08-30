@@ -1,10 +1,11 @@
 //This is my counter, which counts every two seconds to then run the shuttle, pick up or drop off a passenger, etc.
 //The passenger requests are asyncronous, but the shuttles are run on every tick
 
-//This module MUST be at the end of them, since this one can only run when the others have been loaded
+
+module.exports = universe; //This module MUST be at the end of them, since this one can only run when the others have been loaded
 
 
-module.exports = function() {
+function universe() {
 
 	var SolarSystems = require("./solarsystem.js");
 
@@ -17,9 +18,9 @@ module.exports = function() {
 		}
 	}
 
-	setInterval(makeTickFunction, 1500);
+	setInterval(makeTickFunction(mainSolarSystem), 1500);
 
-	return mainSolarSystem;
+	return "Let there be light";
 
 }
 

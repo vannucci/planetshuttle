@@ -1,0 +1,22 @@
+Tuesday Open Issues and notes
+
+
+- Write a README -_-
+- module.exports goes on the bottom of the file
+- use more explicit variable names 
+- make sure constructor functions are Capitalized and camelCase i.e.:
+	filename: SpaceShuttle.js
+	function SpaceShuttle
+	module.exports = SpaceShuttle
+	var SpaceShuttle = require(‘./SpaceShuttle’)
+	var myShuttle = new SpaceShuttle();
+- moar comments
+- make an API call to get shuttle data
+- shuttles should be in an array instead of shuttle1 and shuttle2
+- things that are not instantiable should not be caps
+- any private variables passed in as arguments to a function needn’t  be attached to “this” unless they need to be public, aka accessed by the modules that require them
+- no need to use npm.js
+- move your objects (aka Shuttle, Passenger, etc) into models/ directory - controllers are for route handlers
+- use JSHint.org to lint all files
+- add start script to package.json
+- read about NPM Start

@@ -1,14 +1,22 @@
 
 //Public
-module.exports = SolarSystem;
 
 var Planet = require("./planet.js");
 var Shuttle = require("./shuttle.js");
 var Dispatcher = require("./dispatcher.js");
 var Passenger = require("./passenger.js");
 
+module.exports = SolarSystem;
 
 function SolarSystem() {
+
+	this.getAllPassengers = function() {
+		var allPassengers = {};
+		for(var i = 0; i < this.Planets.length; i++) {
+			allPassengers['Planet ' + i] = { i:this.Planets[i].getPassengers };
+		}
+		return allPassengers;
+	}
 
 	this.Planets = [ //Instantiating new planets in their spot on the planetary array
 

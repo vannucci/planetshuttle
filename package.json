@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,8 +23,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
-    "express-handlebars": "^3.0.0",
-    "nodemon": "^1.11.0"
+    "express-handlebars": "^3.0.0"
   },
   "devDependencies": {
     "chai": "^4.1.1",
