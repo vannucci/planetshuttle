@@ -105,7 +105,12 @@ describe('Solar system', function() {
 		SolarSystem1.next();
 
 
-	})
+	});
+	it('should return an object full of passengers',function() {
+		SolarSystem1.createNewPassenger("Cody", 2)
+		console.log(SolarSystem1.planets[0].passengers);
+		console.log(SolarSystem1.getAllPassengers());
+	});
 
 
 });

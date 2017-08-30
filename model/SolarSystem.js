@@ -11,13 +11,7 @@ var Passenger = require("./Passenger.js");
 
 function SolarSystem() {
 
-	this.getAllPassengers = function() {
-		var allPassengers = {};
-		for(var i = 0; i < this.planets.length; i++) {
-			allPassengers['Planet ' + i] = { i:this.planets[i].getPassengers };
-		}
-		return allPassengers;
-	};
+	this.allPassengers = [];
 
 	this.planets = [ //Instantiating new planets in their spot on the planetary array
 
@@ -37,9 +31,11 @@ function SolarSystem() {
 	this.dispatcher = new Dispatcher(this,this.shuttles[0],this.shuttles[1]); //Instantiate a new dispatcher, pass in the solar system and the two shuttles
 
 
-	this.createNewPassenger = function(name,origin) { //When a passenger is created, they are instantiated and then added to the planet's passengers array
-		var newPassenger = new Passenger(name, origin, this); //The passenger object is created
+	this.createNewPassenger = function(name,origin,direction) { //When a passenger is created, they are instantiated and then added to the planet's passengers array
+		var newPassenger = new Passenger(name, origin, direction, this); //The passenger object is created
+		this.allPassengers.push({"name":name,"origin":origin, "direction":direction});
 		this.planets[origin].queuePassenger(newPassenger);
+		newPassenger.request();
 		return newPassenger;
 	};
 

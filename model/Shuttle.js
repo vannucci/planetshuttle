@@ -28,7 +28,6 @@ function Shuttle(name, currentLocation, id, solarSystemReference) {
 			arrived: this.arrived,
 			passengers: this.passengers.length
 		};
-		console.log(status);
 		return status;
 	};
 
@@ -101,15 +100,6 @@ function Shuttle(name, currentLocation, id, solarSystemReference) {
 	this.dropOffPassenger = function (seat) {
 		//var platform = this.passengers[seat]; //Place the dropping off passenger on the platform
 		this.passengers.splice(seat,1);
-/*
-		for(var j = 0; j < this.pickUplocation.length; j++) { //Go through every pickup location
-			if(this.pickUpLocation[j] === this.currentLocation) { //Find an instance of this passengers destination
-				this.destination.splice(j,1);
-				break; //Remove only one instance of this destination
-
-			}
-		}
-*/
 		return this; //A passenger is not placed in the planet's array, they are simply dropped off and disappear.
 	};
 
@@ -118,9 +108,9 @@ function Shuttle(name, currentLocation, id, solarSystemReference) {
 			if(this.currentLocation === this.pickUpLocation[i]) { //See if we are at any of them, if we are...
 				for(var j = 0; j < this.system.planets[this.currentLocation].passengers.length; j++) { //Look through the local list of passengers
 					if(this.system.planets[this.currentLocation].passengers[j].ticket === this.id) { //This is the right shuttle
+						this.destination = this.system.planets[this.currentLocation].returnPassenger(j); //Push the new destination onto the list
 						this.pickUpPassenger(this.system.planets[this.currentLocation].boardPassenger(j));
 						this.pickUpLocation.splice(i,1); //Remove this pick up location from the pickup queue
-						this.destination = this.system.planets[this.currentLocation].returnPassenger(j); //Push the new destination onto the list
 						return true; //picked up passenger
 					}
 				}				

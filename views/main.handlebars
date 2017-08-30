@@ -34,22 +34,15 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <div class="dropdown navbar-right">
-            <button class="btn btn-primary" type="button" id="tickOnce">
-            <a href='/newPassenger'>
-              TestPassenger
-            </a>
+            <button class="btn btn-primary" type="button" id="testPassenger">
+                TestPassenger
             </button>
 
 
             <button class="btn btn-primary" type="button" id="tickOnce">
-            <a href='/tick'>
               Tick
-            </a>
             </button>
 
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              New Passenger
-            </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="#">Mercury 0</a><br>
               <a class="dropdown-item" href="#">Venus 1</a><br>
@@ -64,41 +57,36 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-2">
-          <h2>Sun</h2>
-          <img src="./img/sun.jpg" class="planet-portrait">
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-2">
-          <h2>Mercury0</h2>
-          <img src="./img/planet1.png" class="planet-portrait">
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-2">
-          <h2>Venus1</h2>
-          <img src="./img/planet2.png" class="planet-portrait">
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-2">
-          <h2>Earth2</h2>
-          <img src="./img/planet3.png" class="planet-portrait">
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-2">
-          <h2>Mars3</h2>
-          <img src="./img/planet4.png" class="planet-portrait">
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
-
-      <div class="row">
         <div class="col-md-12" id="axis-div">
           <img src="./img/axis.png" id="axis">
         </div>
       </div>
 
       <div class="row">
-          <div class="col-md-4">
+        <div class="col-md-2">
+          <h2>Sun</h2>
+          <img src="./img/sun.jpg" class="planet-portrait">
+        </div>
+        <div class="col-md-2">
+          <h2>Mercury0</h2>
+          <img src="./img/planet1.png" class="planet-portrait">
+        </div>
+        <div class="col-md-2">
+          <h2>Venus1</h2>
+          <img src="./img/planet2.png" class="planet-portrait">
+        </div>
+        <div class="col-md-2">
+          <h2>Earth2</h2>
+          <img src="./img/planet3.png" class="planet-portrait">
+       </div>
+        <div class="col-md-2">
+          <h2>Mars3</h2>
+          <img src="./img/planet4.png" class="planet-portrait">
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-3">
             <p><strong>Shuttle {{this.shuttle1.id1}}</strong>
             <br>Pickup Location{{this.shuttle1.pickUpLocation1}} ,
             <br>Destination:{{this.shuttle1.destination1}} ,
@@ -109,7 +97,7 @@
             <br>passengers: {{this.shuttle1.passengers1}}
             </p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <p><strong>Shuttle {{this.shuttle2.id2}}</strong>
             <br>Pickup Location{{this.shuttle2.pickUpLocation2}} ,
             <br>Destination:{{this.shuttle2.destination2}} ,
@@ -121,25 +109,31 @@
             </p>
 
           </div>
-          <div class="col-md-4">
-
+          <div class="col-md-3">
+            <p><strong>Passenger Data:</strong></p>
+            {{#each passenger}}
+              <p>{{name}},<br>Origin: {{origin}},<br>Direction: {{direction}}</p>
+            {{/each}}
+          </div>
+          <div class="col-md-3">
+          <h3>New Passenger</h3>
             <form class="form-horizontal">
               <div class="form-group">
                 <label class="control-label col-sm-2" for="name">Name</label>
-                <div class="col-sm-10">
-                  <input type="name" class="form-control" id="name" placeholder="Enter email">
+                <div class="col-sm-12">
+                  <input type="name" class="form-control" id="name" placeholder="Name">
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-2" for="origin">Origin</label>
-                <div class="col-sm-10"> 
-                  <input type="origin" class="form-control" id="origin" placeholder="Enter password">
+                <div class="col-sm-12"> 
+                  <input type="origin" class="form-control" id="origin" placeholder="Value 0 to 3">
                 </div>
               </div>
               <div class="form-group"> 
-                <label class="control-label col-sm-2" for="dir">Direction<br>(-1 or 1)</label>
-                <div class="col-sm-10"> 
-                  <input type="dir" class="form-control" id="dir" placeholder="Enter password">
+                <label class="control-label col-sm-2" for="dir">Direction</label>
+                <div class="col-sm-12"> 
+                  <input type="dir" class="form-control" id="dir" placeholder="-1 or 1">
                 </div>
               </div>
               <div class="form-group"> 

@@ -13,24 +13,32 @@ function Planet(name, position) {
 	//The arrays of passengers and shuttles may not be useful, since those two objects have come to track
 	//their own locations independently, FWIW
 
+	//Returns a given passenger from the queue, and returns them for boarding
 	this.boardPassenger = function(entry) {
 		var platform = this.passengers[entry];
 		this.passengers.splice(entry,1);
 		return platform;
 	};
 
+	//Adds a passenger to the planetary queue when passed
 	this.queuePassenger = function(passenger) {
 		this.passengers.push(passenger);
 		return this;
 	};
 
-	this.getPassengers = function(i) {
+	//Returns all passengers on a given planet
+	this.getPassengers = function() {
+		var passengerManifest = [];
 		if(this.passengers.length > 0) {
-			return this.passengers[i];
+			for(var i = 0; i < this.passengers.length; i++) {
+				passengerManifest.push(this.passengers[i]);
+			}
+			return passengerManifest;
 		} else {
-			return null;
+			return passengerManifest;
 		}
 	};
+
 
 	this.returnPassenger = function(j) {
 		if(this.passengers[j]) {

@@ -3,6 +3,7 @@
 
 var express = require("express");
 var exphbs = require('express-handlebars');
+var bodyParser = require('body-parser');
 var app = express();
 
 app.engine("handlebars", exphbs({ 
@@ -12,6 +13,10 @@ app.engine("handlebars", exphbs({
 								}));
 
 app.set("view engine", "handlebars");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.static('public'));
 
 var SolarSystem = require("./model/SolarSystem.js");
@@ -19,6 +24,24 @@ var activeSolarSystem = new SolarSystem();
 
 var port = 3000;
 
+app.post('/newPassenger', function(req,res) {
+	var name = req.body.name;
+	var origin = req.body.origin;
+	var dir = req.body.dir;
+	activeSolarSystem.createNewPassenger(name,origin,dir);
+	console.log("Body " + name + "," + origin + "," + dir + ".");
+});
+
+
+app.get('/testPassenger', function(req,res) {
+	activeSolarSystem.createNewPassenger("GlaDOS",1);
+	res.redirect('/');
+});
+
+app.get('/tick', function(req,res) {
+	activeSolarSystem.next();
+	res.redirect('back');
+});
 
 app.get('/', function(req,res) {
 	/*
@@ -29,8 +52,10 @@ app.get('/', function(req,res) {
 	*/
 
 	var shuttle1Status = activeSolarSystem.shuttles[0].statusUpdate();
-
 	var shuttle2Status = activeSolarSystem.shuttles[1].statusUpdate();
+
+	console.log("All passengers " + activeSolarSystem.allPassengers);
+
 
 	var allData = {
 		shuttle1: {
@@ -52,27 +77,12 @@ app.get('/', function(req,res) {
 			direction2: shuttle2Status.direction,
 			arrived2: shuttle2Status.arrived,
 			passengers2: shuttle2Status.passengers.length		
-		}
-
+		},
+		passenger: activeSolarSystem.allPassengers
 	};
 
 	res.render('main', allData);
 
-});
-
-app.get('/tick', function(req,res) {
-	activeSolarSystem.next();
-	res.redirect('/');
-});
-
-app.get('/newPassenger', function(req,res) {
-	activeSolarSystem.createNewPassenger("GlaDOS",1);
-	res.redirect('/');
-});
-
-app.get('/allPassengers', function(req,res) {
-	var allPassengers = activeSolarSystem.getAllPassengers();
-	res.send(allPassengers);
 });
 
 app.listen(port, function() {
