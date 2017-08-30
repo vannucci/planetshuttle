@@ -1,7 +1,8 @@
+/* jshint node: true */
+"use strict";
+
 var express = require("express");
-var bodyParser = require("body-parser");
 var exphbs = require('express-handlebars');
-var path = require('path');
 var app = express();
 
 app.engine("handlebars", exphbs({ 
@@ -13,13 +14,13 @@ app.engine("handlebars", exphbs({
 app.set("view engine", "handlebars");
 app.use(express.static('public'));
 
-var SolarSystem = require("./controller/solarsystem.js");
+var SolarSystem = require("./model/SolarSystem.js");
 var activeSolarSystem = new SolarSystem();
 
 var port = 3000;
 
 
-app.get('/', function(req,res,next) {
+app.get('/', function(req,res) {
 	/*
 	var shuttleStatus = [
 		activeSolarSystem.shuttle1.statusUpdate(),
@@ -27,9 +28,9 @@ app.get('/', function(req,res,next) {
 	];
 	*/
 
-	var shuttle1Status = activeSolarSystem.shuttle1.statusUpdate();
+	var shuttle1Status = activeSolarSystem.shuttles[0].statusUpdate();
 
-	var shuttle2Status = activeSolarSystem.shuttle2.statusUpdate();
+	var shuttle2Status = activeSolarSystem.shuttles[1].statusUpdate();
 
 	var allData = {
 		shuttle1: {
@@ -53,26 +54,26 @@ app.get('/', function(req,res,next) {
 			passengers2: shuttle2Status.passengers.length		
 		}
 
-	}
+	};
 
 	res.render('main', allData);
 
 });
 
-app.get('/tick', function(req,res,next) {
-	activeUniverse.next();
-	res.redirect('/')
-});
-
-app.get('/newPassenger', function(req,res,next) {
-	activeUniverse.createNewPassenger("GlaDOS",1);
+app.get('/tick', function(req,res) {
+	activeSolarSystem.next();
 	res.redirect('/');
 });
 
-app.get('/allPassengers', function(req,res,next) {
-	var allPassengers = activeUniverse.getAllPassengers();
+app.get('/newPassenger', function(req,res) {
+	activeSolarSystem.createNewPassenger("GlaDOS",1);
+	res.redirect('/');
+});
+
+app.get('/allPassengers', function(req,res) {
+	var allPassengers = activeSolarSystem.getAllPassengers();
 	res.send(allPassengers);
-})
+});
 
 app.listen(port, function() {
 	console.log('App running on port ' + port);

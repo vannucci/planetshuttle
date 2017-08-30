@@ -2,9 +2,9 @@ var chai = require('chai');
 
 var assert = chai.assert;
 
-var Shuttle = require('../controller/shuttle.js');
-var Passenger = require('../controller/passenger.js');
-var SolarSystem = require('../controller/solarsystem.js');
+var Shuttle = require('../model/Shuttle.js');
+var Passenger = require('../model/Passenger.js');
+var SolarSystem = require('../model/SolarSystem.js');
 
 describe('Shuttle', function() {
 	var Shuttle1 = new Shuttle('Columbus',2);

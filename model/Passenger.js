@@ -2,7 +2,9 @@
 //and a destination.
 
 //Public
-module.exports = Passenger;
+/* jshint node: true */
+"use strict";
+
 
 
 function Passenger(name, origin, ssRef) {
@@ -13,13 +15,13 @@ function Passenger(name, origin, ssRef) {
 	this.currentLocation = origin;
 	this.boardedShuttle = null; //This is the shuttle the passenger is on
 	this.ticket = null;
-	this.solarSystem = ssRef;
+	var solarSystem = ssRef;
 
 	this.request = function (direction,destination) {
 		this.passengerDirection = direction;
 		this.passengerDestination = destination;
 		//call the dispatcher here, dispatcher will set ticket 1 or 2 depending on shuttle
-		this.ticket = this.solarSystem.dispatcher.sendShuttle(this);
+		this.ticket = solarSystem.dispatcher.sendShuttle(this);
 		if(this.ticket === 0) {
 			console.log("You cannot a board a shuttle today");
 		}
@@ -31,7 +33,7 @@ function Passenger(name, origin, ssRef) {
 	this.setLocation = function(location) {
 		this.currentLocation = location;
 		return this;
-	}
+	};
 
 	this.areWeThereYet = function() { //On every tick, the passengers themselves check if they've arrived at their destination
 		if(this.passengerDestination === this.boardedShuttle.currentLocation) {
@@ -42,9 +44,11 @@ function Passenger(name, origin, ssRef) {
 			console.log("I will turn this shuttle around!!");
 		}
 
-	}
+	};
 
 	console.log("Passenger " + this.name + " reporting");
 	
 }
+
+module.exports = Passenger;
 

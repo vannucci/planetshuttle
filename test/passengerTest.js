@@ -2,7 +2,7 @@ var chai = require('chai');
 
 var assert = chai.assert;
 
-var Passenger = require('../controller/passenger.js');
+var Passenger = require('../model/Passenger.js');
 
 describe('Passenger', function() {
 	var Emily = new Passenger('Emily','Earth');
@@ -10,8 +10,6 @@ describe('Passenger', function() {
 	it('should create a passenger', function() {
 
 		assert.exists(Emily, "Emily is neither 'null' or 'undefined'");
-		//assert.equal(Emily.passengerDiretion = '');
-		//assert.equal(Emily.passengerDestination = '');
 	});
 	
 	it("Should have the initialized properties", function() {

@@ -1,6 +1,7 @@
 
 //Public
-module.exports = Planet;
+/* jshint node: true */
+"use strict";
 
 
 function Planet(name, position) {
@@ -15,21 +16,21 @@ function Planet(name, position) {
 	this.boardPassenger = function(entry) {
 		var platform = this.passengers[entry];
 		this.passengers.splice(entry,1);
-		return platform
-	}
+		return platform;
+	};
 
 	this.queuePassenger = function(passenger) {
 		this.passengers.push(passenger);
 		return this;
-	}
+	};
 
 	this.getPassengers = function(i) {
 		if(this.passengers.length > 0) {
-			return this.passengers;
+			return this.passengers[i];
 		} else {
 			return null;
 		}
-	}
+	};
 
 	this.returnPassenger = function(j) {
 		if(this.passengers[j]) {
@@ -37,10 +38,12 @@ function Planet(name, position) {
 		} else {
 			return null;
 		}
-	}
+	};
 
-	console.log("Sailor " + this.name + " reporting!");
+	console.log("Planet " + this.name + " active");
 
 	
 }
+
+module.exports = Planet;
 
