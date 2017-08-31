@@ -26,7 +26,7 @@ function Dispatcher(solarsystem,shuttle1, shuttle2) {
 
 		var chosenShuttle = returnLowestScoreIndex(shuttleScore) + 1;
 		console.log("The chosen shuttle is " + chosenShuttle);
-		currentSolarSystem.shuttles[chosenShuttle].queuePickupLocation(passenger.origin);
+		currentSolarSystem.shuttles[chosenShuttle - 1].queuePickupLocation(passenger.origin);
 		return chosenShuttle;
 
 
