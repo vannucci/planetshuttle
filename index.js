@@ -24,11 +24,13 @@ var activeSolarSystem = new SolarSystem();
 
 var port = 3000;
 
+//This method calls the solar system to create a new passenger. Please not that the origin and direction must be
+//parsed as ints because they come from the form as strings, thus RUINING my lovely logic on the shuttle side
 app.post('/newPassenger', function(req,res) {
 	var name = req.body.name;
 	var origin = req.body.origin;
 	var dir = req.body.dir;
-	activeSolarSystem.createNewPassenger(name,origin,dir);
+	activeSolarSystem.createNewPassenger(name,parseInt(origin),parseInt(dir));
 	console.log("Body " + name + "," + origin + "," + dir + ".");
 	res.redirect('back');
 });

@@ -11,7 +11,7 @@ function Passenger(name, origin, direction, ssRef) {
 	this.name = name;
 	this.origin = origin;
 	this.passengerDirection = direction;
-	this.passengerDestination = origin;
+	this.passengerDestination = null;
 	this.currentLocation = origin;
 	this.boardedShuttle = null; //This is the shuttle the passenger is on
 	this.ticket = null;
