@@ -38,11 +38,6 @@ function Planet(name, position) {
 		}
 	};
 
-
-	this.getDestination = function(j) {
-		return this.passengers[j].passengerDestination;
-	};
-
 	console.log("Planet " + this.name + " active");
 
 	

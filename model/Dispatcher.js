@@ -10,16 +10,17 @@ function Dispatcher(solarsystem,shuttle1, shuttle2) {
 
 	var shuttles = [shuttle1,shuttle2];
 
+	//This is the part I wish I had had more time to work on. As of right now, the dispatcher simply sends whichever shuttle
+	//is closest to the passenger who made the request. This section should also take into account whether the shuttle is
+	//moving at the time of the request, which way they are moving, so as to optimize which shuttle takes the fewest steps to
+	//pick up the next passenger.
 	this.sendShuttle = function (passenger) {
-		//For now, it just sends whichever shuttle is not moving
-		console.log("Request for shuttle from " + passenger.name + " has been made from " + passenger.origin + " to " + passenger.passengerDestination);
 
 		var shuttleScore = [0,0];
 
-		// shuttleScore[0] = Math.sign(shuttles[0].velocity) * ( passenger.origin - shuttles[0].currentLocation);
-		shuttleScore[0] = (passenger.origin - shuttles[0].currentLocation);
-		// shuttleScore[1] = Math.sign(shuttles[1].velocity) * ( passenger.origin - shuttles[1].currentLocation);
-		shuttleScore[1] = (passenger.origin - shuttles[1].currentLocation);
+		shuttleScore[0] = Math.abs(passenger.origin - shuttles[0].currentLocation);
+
+		shuttleScore[1] = Math.abs(passenger.origin - shuttles[1].currentLocation);
 
 
 		if((shuttleScore[0] <= shuttleScore[1]) && !isNaN(shuttleScore[0])) {

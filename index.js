@@ -35,22 +35,18 @@ app.post('/newPassenger', function(req,res) {
 	res.redirect('back');
 });
 
+//Advances the clock by one tick to move the shuttles and pick up and drop off passengers
 app.get('/tick', function(req,res) {
 	activeSolarSystem.next();
 	res.redirect('back');
 });
 
+//Main route
 app.get('/', function(req,res) {
-	/*
-	var shuttleStatus = [
-		activeSolarSystem.shuttle1.statusUpdate(),
-		activeSolarSystem.shuttle2.statusUpdate()
-	];
-	*/
-
 	var shuttle1Status = activeSolarSystem.shuttles[0].statusUpdate();
 	var shuttle2Status = activeSolarSystem.shuttles[1].statusUpdate();
 
+	//Compiling object to be rendered by handlebars
 	var allData = {
 		shuttle1: {
 			id1: shuttle1Status.id,

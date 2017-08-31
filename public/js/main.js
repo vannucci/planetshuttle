@@ -4,7 +4,7 @@
 (function() {
 "use strict";
 
-
+	//submitting form data which instantiates a new passenger, making sure the values are legal
 	$('form').on('submit', function(event) {
 		event.preventDefault();
 		var passengerData = {
@@ -31,6 +31,7 @@
 		location.reload();
 	});
 
+	//ticking the universe along
 	$('#tickOnce').on('click', function(event) {
 		$.ajax({
 			type: 'GET',

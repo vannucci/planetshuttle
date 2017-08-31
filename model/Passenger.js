@@ -17,10 +17,8 @@ function Passenger(name, origin, direction, ssRef) {
 	this.ticket = null;
 	var solarSystem = ssRef;
 
+	//When called a passenger will make a request to the dispatcher object for a pickup
 	this.request = function () {
-		//this.passengerDirection = direction;
-		//this.passengerDestination = destination;
-		//call the dispatcher here, dispatcher will set ticket 1 or 2 depending on shuttle
 		this.ticket = solarSystem.dispatcher.sendShuttle(this);
 		if(this.ticket === 0) {
 			return false;
