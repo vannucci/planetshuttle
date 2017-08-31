@@ -40,12 +40,8 @@ function Planet(name, position) {
 	};
 
 
-	this.returnPassenger = function(j) {
-		if(this.passengers[j]) {
-			return this.passengers[j];
-		} else {
-			return null;
-		}
+	this.getDestination = function(j) {
+		return this.passengers[j].passengerDestination;
 	};
 
 	console.log("Planet " + this.name + " active");

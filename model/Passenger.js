@@ -11,7 +11,7 @@ function Passenger(name, origin, direction, ssRef) {
 	this.name = name;
 	this.origin = origin;
 	this.passengerDirection = direction;
-	this.passengerDestination = '';
+	this.passengerDestination = origin;
 	this.currentLocation = origin;
 	this.boardedShuttle = null; //This is the shuttle the passenger is on
 	this.ticket = null;
@@ -27,7 +27,7 @@ function Passenger(name, origin, direction, ssRef) {
 			return false;
 		} else {
 			console.log("Passenger " + this.name + " starting from " + this.origin + " requesting passage to " + this.passengerDestination);
-			return true;
+			return this.ticket;
 		}
 
 	};

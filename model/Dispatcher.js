@@ -23,11 +23,11 @@ function Dispatcher(solarsystem,shuttle1, shuttle2) {
 
 
 		if(shuttleScore[0] <= shuttleScore[1] && !isNaN(shuttleScore[0])) {
-			currentSolarSystem.shuttles[0].queuePickupLocation(passenger.origin);
+			currentSolarSystem.shuttles[0].queuePickupLocation(parseInt(passenger.origin));
 			console.log("Shuttle 1 assigned to " + passenger.name + " from " + passenger.origin + " with destination " + passenger.passengerDestination);
 			return 1; //return the ticket number
 		} else if(!isNaN(shuttleScore[1])) {
-			currentSolarSystem.shuttles[1].queuePickupLocation(passenger.origin);
+			currentSolarSystem.shuttles[1].queuePickupLocation(parseInt(passenger.origin));
 			console.log("Shuttle 2 assigned to " + passenger.name + " from " + passenger.origin + " with destination " + passenger.passengerDestination);
 			return 2; //return the ticket number
 		} else {
