@@ -35,7 +35,7 @@ function Shuttle(name, startingLocation, id, solarSystemReference) {
 		if(this.velocity===0 && this.pickUpLocation.length > 0) {
 			this.sendTo(this.pickUpLocation[0]); //Assign the next one and keep going
 			this.pickUpLocation.splice(0,1);
-		}
+		} 
 		this.moveUntilArrived();
 		if(this.arrived && this.pickUpLocation.length > 0) { //If you have arrived at your destination...
 			if(this.pickUpLocation.length > 0) { //If there are still destinations in the queue...
