@@ -59,14 +59,12 @@ function Shuttle(name, startingLocation, id, solarSystemReference) {
 			return;
 		} else {
 			this.arrived = false;
-			console.log("Tripped arrived false");
 		}
 
 		var heading = this.destination - this.currentLocation; //This is a vector, of sorts, telling the shuttle which way to go and how far
 		this.direction = Math.sign(heading);
 		this.velocity = Math.sign(heading);
 		this.distanceToTravel = Math.abs(heading);
-		// console.log("Shuttle on sendTo " + this.id + " direction is " + this.direction + " velocity is " + this.velocity + " distance is " + this.distanceToTravel + " from location " + this.currentLocation + " to destination " + this.destination + " has arrived " + this.arrived);
 		return;
 	};
 
@@ -87,7 +85,6 @@ function Shuttle(name, startingLocation, id, solarSystemReference) {
 			this.direction = 0;
 			this.heading = 0;
 		}
-		// console.log("Shuttle onMove " + this.id + " direction is " + this.direction + " velocity is " + this.velocity + " distance is " + this.distanceToTravel + " from location " + this.currentLocation + " to destination " + this.destination);
 
 
 	};
@@ -99,12 +96,10 @@ function Shuttle(name, startingLocation, id, solarSystemReference) {
 		} else {
 			this.destination = this.currentLocation;
 		}
-		console.log("Picked up " + passenger + " and set destination to " + this.destination + " we now have " + this.passengers.length);
 		return this; //For event chaining
 	};
 
 	this.dropOffPassenger = function (seat) {
-		//var platform = this.passengers[seat]; //Place the dropping off passenger on the platform
 		this.passengers.splice(seat,1);
 		return this; //A passenger is not placed in the planet's array, they are simply dropped off and disappear.
 	};
@@ -112,7 +107,6 @@ function Shuttle(name, startingLocation, id, solarSystemReference) {
 	this.checkForPickups = function() { //Look through the list of pickups and see if where we are matches it
 		for(var j = 0; j < this.system.planets[this.currentLocation].passengers.length; j++) { //Look through the local list of passengers
 			if(this.system.planets[this.currentLocation].passengers[j].ticket === this.id) { //This is the right shuttle
-				// this.destination = this.system.planets[this.currentLocation].getDestination(j); //Push the new destination onto the list
 				this.pickUpPassenger(this.system.planets[this.currentLocation].boardPassenger(j));
 				return true; //picked up passenger
 			}

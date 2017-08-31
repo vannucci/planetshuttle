@@ -23,10 +23,8 @@ function Passenger(name, origin, direction, ssRef) {
 		//call the dispatcher here, dispatcher will set ticket 1 or 2 depending on shuttle
 		this.ticket = solarSystem.dispatcher.sendShuttle(this);
 		if(this.ticket === 0) {
-			console.log("You cannot a board a shuttle today");
 			return false;
 		} else {
-			console.log("Passenger " + this.name + " starting from " + this.origin + " requesting passage to " + this.passengerDestination);
 			return this.ticket;
 		}
 

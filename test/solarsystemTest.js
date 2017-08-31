@@ -78,7 +78,7 @@ describe('Solar system', function() {
 	});
 
 	it('create a passenger at 2, passenger requests to go to 0, click on next to tick the environment and both shuttles, pick up and drop off the passenger', function() {
-		SolarSystem1.createNewPassenger("Doobles",2,SolarSystem1).request(-1,0);
+		SolarSystem1.createNewPassenger("Mike",2,SolarSystem1).request(-1,0);
 		SolarSystem1.shuttles[0].statusUpdate();
 		SolarSystem1.shuttles[1].statusUpdate();
 		SolarSystem1.next();
