@@ -38,6 +38,10 @@ describe('Shuttle', function() {
 		assert.equal(Shuttle1.destination, 3, "the shuttle now has a destination of 3");
 	});
 
+	it("Should return the chosen shuttle", function() {
+		assert.isOk(SolarSystem1.dispatcher.sendShuttle(new Passenger('Elana',1,1)));
+	});
+
 
 
 });
