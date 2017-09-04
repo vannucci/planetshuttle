@@ -18,43 +18,46 @@ function Dispatcher(solarsystem,shuttle1, shuttle2) {
 	//
 	this.sendShuttle = function (passenger) {
 
-		var shuttleScore = [0,0];
+		//ICE, return shuttle 1. ShuttlePScore is positional score, ShuttleVScore is velocity score
+		var chosenShuttle = 1;
+		var shuttlePScore = [0,0];
+		var shuttleVScore = [0,0];
 
-		shuttleScore[0] = Math.abs(passenger.origin - shuttles[0].currentLocation);
+		shuttlePScore[0] = Math.abs(passenger.origin - shuttles[0].currentLocation);
+		shuttleVScore[0] = shuttles[0].velocity * (passenger.origin - shuttles[0].currentLocation);
+		console.log("Shuttle 1 position score " + shuttlePScore[0] + ", shuttle velocity score " + shuttleVScore[0]);
 
-		shuttleScore[1] = Math.abs(passenger.origin - shuttles[1].currentLocation);
+		shuttlePScore[1] = Math.abs(passenger.origin - shuttles[1].currentLocation);
+		shuttleVScore[1] = shuttles[1].velocity * (passenger.origin - shuttles[1].currentLocation);
+		console.log("Shuttle 1 position score " + shuttlePScore[1] + ", shuttle velocity score " + shuttleVScore[1]);
 
-		var chosenShuttle = returnLowestScoreIndex(shuttleScore) + 1;
-		console.log("The chosen shuttle is " + chosenShuttle);
+
+		//If the two shuttles are equidistant from the request origin, go by velocity. This will also work if both shuttles
+		//have velocity zero, since they are both fair candidates and the choice doesn't matter.
+		if(shuttlePScore[0] === shuttlePScore[1]) {
+			chosenShuttle = returnLowestScoreIndex(shuttleVScore) + 1;
+		} else {
+			chosenShuttle = returnLowestScoreIndex(shuttlePScore) + 1;
+		}
+
 		currentSolarSystem.shuttles[chosenShuttle - 1].queuePickupLocation(passenger.origin);
 		return chosenShuttle;
-
-
-		if((shuttleScore[0] <= shuttleScore[1]) && !isNaN(shuttleScore[0])) {
-			currentSolarSystem.shuttles[0].queuePickupLocation(passenger.origin);
-			return 1; //return the ticket number
-		} else if(!isNaN(shuttleScore[1])) {
-			currentSolarSystem.shuttles[1].queuePickupLocation(passenger.origin);
-			return 2; //return the ticket number
-		} else {
-			return 0;
-		}
 
 	};
 
 	var returnLowestScoreIndex = function(array) {
-		var max = array[0];
-		var maxIndex = 0;
+		var min = array[0];
+		var minIndex = 0;
 
 		for(var i = 0; i < array.length; i++) {
-			if(array[i] > max) {
-				maxIndex = i;
-				max = array[i];
+			if(array[i] < min) {
+				minIndex = i;
+				min = array[i];
 			}
 		}
 
-		return maxIndex;
-	}  
+		return minIndex;
+	};
 
 	console.log("Dispatcher running");
 	

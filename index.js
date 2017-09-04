@@ -32,6 +32,7 @@ app.post('/newPassenger', function(req,res) {
 	var dir = req.body.dir;
 	activeSolarSystem.createNewPassenger(name,parseInt(origin),parseInt(dir));
 	console.log("Body " + name + "," + origin + "," + dir + ".");
+	activeSolarSystem.next();
 	res.redirect('back');
 });
 
