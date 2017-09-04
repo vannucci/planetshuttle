@@ -21,39 +21,29 @@ function Dispatcher(solarsystem,shuttle1, shuttle2) {
 		var shuttleScore = [0,0];
 
 		shuttleScore[0] = Math.abs(passenger.origin - shuttles[0].currentLocation);
+		console.log(shuttleScore[0]);
 
 		shuttleScore[1] = Math.abs(passenger.origin - shuttles[1].currentLocation);
+		console.log(shuttleScore[1]);
 
 		var chosenShuttle = returnLowestScoreIndex(shuttleScore) + 1;
-		console.log("The chosen shuttle is " + chosenShuttle);
 		currentSolarSystem.shuttles[chosenShuttle - 1].queuePickupLocation(passenger.origin);
 		return chosenShuttle;
-
-
-		if((shuttleScore[0] <= shuttleScore[1]) && !isNaN(shuttleScore[0])) {
-			currentSolarSystem.shuttles[0].queuePickupLocation(passenger.origin);
-			return 1; //return the ticket number
-		} else if(!isNaN(shuttleScore[1])) {
-			currentSolarSystem.shuttles[1].queuePickupLocation(passenger.origin);
-			return 2; //return the ticket number
-		} else {
-			return 0;
-		}
 
 	};
 
 	var returnLowestScoreIndex = function(array) {
-		var max = array[0];
-		var maxIndex = 0;
+		var min = array[0];
+		var minIndex = 0;
 
 		for(var i = 0; i < array.length; i++) {
-			if(array[i] > max) {
-				maxIndex = i;
-				max = array[i];
+			if(array[i] < min) {
+				minIndex = i;
+				min = array[i];
 			}
 		}
 
-		return maxIndex;
+		return minIndex;
 	}  
 
 	console.log("Dispatcher running");
